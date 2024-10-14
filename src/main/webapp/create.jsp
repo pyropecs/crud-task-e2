@@ -6,19 +6,20 @@
     <title>create customer</title>
   </head>
   <body>
-    <form action="add" method="post" onsubmit="return ValidateForm(this);">
+    <form action="add" method="post" onsubmit="return emptyValidation();">
       <div class="">
         <label for="">enter name</label>
-        <input type="text" name="customer_name" />
+        <input type="text" name="customer_name"  id="name" />
+        <span id="name-error"></span>
       </div>
       <div class="">
         <label for="">enter age</label>
-        <input type="text" name="customer_age" id="age" />
+        <input type="text" name="customer_age" onchange="return ValidateForm()" id="age" />
         <span id="age-error"></span>
       </div>
       <div class="">
         <label for="">enter rating</label>
-        <input type="text" name="customer_rating" id="rating" />
+        <input type="text" name="customer_rating" onchange="return ValidateForm()" id="rating" />
         <span id="rating-error"></span>
       </div>
 
