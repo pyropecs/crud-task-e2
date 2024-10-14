@@ -6,43 +6,49 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-
 import com.customers.beanclasses.Customer;
 import com.customers.common.HibernateInit;
 
 public class FetchCustomers {
 
+    private List<Customer> customerList;
+
     public List<Customer> getCustomers(Integer... id) {
+
         String hql;
         HibernateInit hibernateInstance = new HibernateInit();
         Session sessionInstance = hibernateInstance.init();
-        if (id.length == 0) {
-            hql = "from Customer";
-        } else {
-            hql = "from Customer where id = " + id[0];
-
+        try {
+            hql = id.length == 0 ? "from Customer" : "from Customer where id = " + id[0];
+            Query query = sessionInstance.createQuery(hql);
+            customerList = query.getResultList();
+        } catch (Exception e) {
+            System.out.println("something went wrong in FetchCustomers.getCustomers()");
+            e.printStackTrace();
+        } finally {
+            sessionInstance.close();
         }
 
-        Query query = sessionInstance.createQuery(hql);
-        List<Customer> customerList = query.getResultList();
-        sessionInstance.close();
         return customerList;
 
     }
 
     public void insertCustomers(String name, long age, double rating) {
+        HibernateInit hibernateInstance = new HibernateInit();
+        Session sessionInstance = hibernateInstance.init();
         try {
-            HibernateInit hibernateInstance = new HibernateInit();
-            Session sessionInstance = hibernateInstance.init();
+
             Customer customer = new Customer();
             customer.setAge(age);
             customer.setName(name);
             customer.setRating(rating);
             sessionInstance.save(customer);
-            sessionInstance.close();
+
         } catch (Exception e) {
             System.out.println("something went wrong FetchCustomers.insertCustomers()");
             System.out.println(e.getMessage());
+        } finally {
+            sessionInstance.close();
         }
 
     }
@@ -81,7 +87,7 @@ public class FetchCustomers {
             query.setParameter("age", age);
             query.setParameter("name", name);
             query.setParameter("rating", rating);
-            query.setParameter("customerId",id);
+            query.setParameter("customerId", id);
             query.executeUpdate();
             transaction.commit();
 
