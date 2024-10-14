@@ -1,0 +1,35 @@
+<%@ page import="com.customers.beanclasses.Customer" %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>create customer</title>
+  </head>
+  <body>
+    <%! private Customer customer; %>
+
+    <%
+    customer = (Customer)  request.getAttribute("customer");
+    
+    
+    %> 
+
+    <form action="edit?id=<%=customer.getId() %>" method="post">
+      <div class="">
+        <label for="">enter name</label>
+        <input type="text" name="customer_name" value="<%= customer.getName() %>"   />
+      </div>
+      <div class="">
+        <label for="">enter age</label>
+        <input type="text" name="customer_age" value="<%= customer.getAge() %>" />
+      </div>
+      <div class="">
+        <label for="">enter rating</label>
+        <input type="text" name="customer_rating" value="<%= customer.getRating() %>" />
+      </div>
+
+      <button type="submit">update</button>
+    </form>
+  </body>
+</html>

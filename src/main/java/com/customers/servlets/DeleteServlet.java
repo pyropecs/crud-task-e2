@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.customers.FetchCustomers;
 
-@WebServlet("delete")
+@WebServlet("/delete")
 public class DeleteServlet extends HttpServlet{
 
         public void doGet(HttpServletRequest req,HttpServletResponse res){

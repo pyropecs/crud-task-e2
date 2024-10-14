@@ -29,13 +29,14 @@ public class AddServlet extends HttpServlet {
                         FetchCustomers fetchInstance = new FetchCustomers();
                         String name = req.getParameter("customer_name");
                         long age = Long.valueOf(req.getParameter("customer_age"));
-                        double rating = Long.valueOf(req.getParameter("customer_rating"));
+                        double rating = Double.valueOf(req.getParameter("customer_rating"));
                         fetchInstance.insertCustomers(name, age, rating);
                         res.setStatus(200);
                         res.sendRedirect("/crud-task");
                 } catch (Exception e) {
                         System.out.println("something went wrong in post request addservlet");
                         System.out.println(e.getMessage());
+                        e.printStackTrace();
                 }
 
         }

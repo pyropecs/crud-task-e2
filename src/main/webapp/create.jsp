@@ -6,6 +6,7 @@
     <title>create customer</title>
   </head>
   <body>
+  
     <form action="add" method="post">
       <div class="">
         <label for="">enter name</label>
