@@ -3,6 +3,7 @@ function ValidateForm() {
   const rating = Number(document.querySelector("#rating").value);
   let errorMessage;
   let isNotError = true;
+  console.log(age);
   if (age < 0 || isNaN(age)) {
     errorMessage = "Age must be a positive number.";
     const ageErrorElement = document.querySelector("#age-error");
@@ -36,7 +37,7 @@ function emptyValidation() {
 
   if (rating.length === 0) {
     errorMessage = "Rating is required";
-    const ageErrorElement = document.querySelector("#age-error");
+    const ageErrorElement = document.querySelector("#rating-error");
     ageErrorElement.textContent = errorMessage;
     ageErrorElement.style.color = "red";
     isNotError = false;

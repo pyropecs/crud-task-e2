@@ -22,13 +22,14 @@
           name="customer_name"
           value="<%= customer.getName() %>"
         />
+        <span id="name-error"></span>
       </div>
       <div class="">
         <label for="">enter age</label>
         <input
           type="text"
           name="customer_age"
-          onchange="return ValidateForm()"
+          oninput="return ValidateForm()"
           value="<%= customer.getAge() %>"
         />
         <span id="age-error"></span>
@@ -38,7 +39,7 @@
         <input
           type="text"
           name="customer_rating"
-          onchange="return ValidateForm()"
+          oninput="return ValidateForm()"
           value="<%= customer.getRating() %>"
         />
         <span id="rating-error"></span>
